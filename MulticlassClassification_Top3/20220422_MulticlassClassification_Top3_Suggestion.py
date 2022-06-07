@@ -1,25 +1,3 @@
-
-#%% Plan for the Recognition Assistant:
-"""
-Procedure
-1. Load OS Data
-2. Implement multiclass prediction with cv
-3. Implement 1-vs- all predictions with cv and calc average precision
-4. Compare
-
--> Result stored in Dataframe 20220105_Binary_vs_Multiclass_DataResults_OSData in the dicts: result_dict_opt_multiclass and result_dict_opt
-Overall: Comparable performance since the RISE model is used for all timeseries
-
-Next step: Investigate time series characteristica for the following time series and chose optimal theoretical model and redo:
-    - Position
-    - Power
-    - Velocity
-    - Voltage
-    - Vibration
-"""
-#%% 0. Load OS, Synatec, SDOK and Aton Data
-##############################################################################
-
 #%% Importing Packages
 import pandas as pd
 import numpy as np
