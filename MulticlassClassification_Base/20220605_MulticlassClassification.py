@@ -17,7 +17,7 @@ from sklearn.metrics import f1_score, make_scorer
 from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, accuracy_score
 
 #Import Sktime
 #from sktime.classification.compose import TimeSeriesForestClassifier
@@ -36,12 +36,6 @@ from Classification.data_handling.basics import read_in_data, handling_data, map
 #from Classification.custom_classifiers.train_model import rise_training
 
 #%% General
-# Orga: Define ring
-duration = 2000  # milliseconds
-freq = 440  # Hz
-winsound.Beep(freq, duration)
-
-# Technical: Define max. time series length
 series_length = 1000 #Time series length for predictions
 
 #%% 1. Load OS Data
@@ -129,3 +123,6 @@ divisor_precision = true_pos + false_pos
 
 #Calc average class precision
 precision = np.average(true_pos[divisor_precision != 0]/divisor_precision[divisor_precision != 0])
+
+#Calc accuracy
+acc = accuracy_score(y_test, y_pred)
