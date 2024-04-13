@@ -7,7 +7,7 @@ param_dic = {
     "host"      : "localhost",
     "database"  : "sensordata",
     "user"      : "postgres",
-    "password"  : "JNt8hSW4l+MJ]p;.g[WG"
+    "password"  : ""
 }
 
 # connect to the database
