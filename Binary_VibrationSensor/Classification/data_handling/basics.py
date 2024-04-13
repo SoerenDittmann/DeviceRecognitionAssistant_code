@@ -12,7 +12,7 @@ import numpy as np
 #import matplotlib.pyplot as plt
 
 
-#%% Read in Synatec, SDOK and Aton Data
+#%% Read in Data
 
 #Read in Data 
 
@@ -35,7 +35,7 @@ def read_in_data(path_to_files, dtype_in, aton_check,datatype):
         del_list = []
         
         for column in data:
-            #Attention: Currently special case for SDOK ID
+            #Attention: Currently special case for ID
             if (data[column].dtype != 'float') and (data[column].dtype != 'int') and (column != 'DT_SN_TOOL'):
                 if data[column].nunique() < 10:
                     #convert unqiue values to numbers
@@ -58,22 +58,22 @@ def read_in_data(path_to_files, dtype_in, aton_check,datatype):
         data = data.fillna(0)
         data = data.loc[:, (data != 0).any(axis=0)]
 
-        drop_list = ['Kurve', 'LAUF_NR', 'REVISION', 'MU', 'Benutzer', 'TID', 'P_BEZEICHNUNG', 'M_PROZENT', 'M_GAUSS', 'W_PROZENT', 'W_GAUSS', 'ALTERNIEREND', 'MAXSTUFE', 'STUFE_NR', 'Dateiname']
+        drop_list = ['K', 'L_NR', 'REV', 'MU', 'Be', 'TID', 'P_BEZ', 'M_PRO', 'M_G', 'W_PRO', 'W_G', 'ALTERNIEREND', 'MAXSTUFE', 'STUFE_NR', 'Dateiname']
         data = data.drop(columns = drop_list)
 
 
         del_list = []
 
         for column in data:
-            #Attention: Currently special case for ATON ID
-            if (data[column].dtype != 'float') and (data[column].dtype != 'int') and (column != 'DT_SN_TOOL') and (column != 'STUFE_NAME'):
+            #Attention: Currently special case for ID
+            if (data[column].dtype != 'float') and (data[column].dtype != 'int') and (column != 'DT_SN') and (column != 'STUFE_N'):
                 #convert unqiue values to numbers
                 #1. create dict of distinct values
                 remap_dict = dict([(y,x+1) for x,y in enumerate(set(data[column]))])
                 #2. replace non int and floats via dict values
                 data[column] = data[column].map(remap_dict)
     
-        data = data[data.STUFE_NAME == 'ES']
+        data = data[data.S_NAME == 'E']
     
     return data
 
